@@ -1,3 +1,4 @@
+#libreries
 import json
 import plotly
 import pandas as pd
@@ -42,20 +43,21 @@ def index():
     # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
+            
+    # Category data 
+    categories =  df[df.columns[4:]]
+    cate_counts = (categories.mean()*categories.shape[0]).sort_values(ascending=False)
+    cate_names = list(cate_counts.index)
     
-    # Category data
-    categories =  df.iloc[:, 4:]
-    cate_counts = categories.sum().sort_values(ascending=False)
-    cate_names = cate_counts.index.tolist()
-
-    # Categories Distribution
-    direct_cate = df[df['genre'] == 'direct']
-    direct_cate_counts = direct_cate.sum().sort_values(ascending=False)
-    direct_cate_names = direct_cate_counts.index.tolist()
-
+    # Categories Distribution 
+    direct_cate = df[df.genre == 'direct']
+    direct_cate_counts = (direct_cate.mean()*direct_cate.shape[0]).sort_values(ascending=False)
+    direct_cate_names = list(direct_cate_counts.index)
+    
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
     graphs = [
+        # Visualization#1
         {
             'data': [
                 Bar(
@@ -74,36 +76,46 @@ def index():
                 }
             }
         },
-       # Visualization#2
-    {
-        'data': [
-            {
-                'type': 'bar',
-                'x': cate_names,
-                'y': cate_counts
-            }
-        ],
-        'layout': {
-            'title': 'Distribution of Message Categories',
-            'yaxis': {'title': "Count"},
-            'xaxis': {'title': "Categories"}
-        }
-    },
-     # Visualization#3
-         {
-        'data': [
-            {
-                'type': 'pie',
-                'labels': cate_names,
-                'values': cate_counts
-            }
-        ],
-        'layout': {
-            'title': 'Distribution of Message Categories (Pie Chart)'
-        }
-    }
-]
+        # Visualization#2
+        {
+            'data': [
+                Bar(
+                    x=cate_names,
+                    y=cate_counts
+                )
+            ],
 
+            'layout': {
+                'title': 'Distribution of Message Categories',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Categories"
+                }
+            }
+            
+        },
+        # Visualization#3
+        {
+            'data': [
+                Bar(
+                    x=direct_cate_names,
+                    y=direct_cate_counts
+                )
+            ],
+
+            'layout': {
+                'title': 'Categories Distribution in Direct Genre',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Categories in Direct Genre"
+                }
+            }
+        }
+    ]
     
     # encode plotly graphs in JSON
     ids = ["graph-{}".format(i) for i, _ in enumerate(graphs)]
@@ -132,6 +144,7 @@ def go():
 
 
 def main():
+    
     app.run(host='0.0.0.0', port=3000, debug=True)
 
 
