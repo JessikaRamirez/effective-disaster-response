@@ -10,6 +10,20 @@ The repository includes the following files and folders:
 * models: Folder containing the trained models. 
 * app: Folder containing a web application to interact with the model and classify new messages.
 * README.md: This documentation file.
+
+## Requirements
+To run the pipeline and the web application, the following dependencies are required:
+Python 3.7 or higher
+Python libraries: pandas, numpy, scikit-learn, nltk, flask.
+
+## Usage
+The pipeline consists of the following steps:
+
+Data preprocessing: Text data is cleaned and processed, including tokenization, stop word removal, lemmatization, and normalization.
+Feature extraction: Relevant features are extracted from the preprocessed text data using techniques like TF-IDF (Term Frequency-Inverse Document Frequency).
+Model training: A machine learning model is trained using the labeled data.
+Message classification: The trained model is used to classify new messages and assign them to appropriate categories.
+
 ### Instructions:
 1. Run the following commands in the project's root directory to set up your database and model.
 
@@ -24,6 +38,11 @@ The repository includes the following files and folders:
 
 4. Click the `PREVIEW` button to open the homepage
 
-## Contributions
-Contributions to this project are welcome. If you encounter any problems, have any ideas for improvement or would like to add new features, please feel free to do so. 
+## Web Application
+The web application in the app folder allows you to interact with the trained model and classify new messages through a graphical interface. To run the application, simply execute the app/run.py file 
 
+## Contributions
+Contributions to this project are welcome. If you find any issues, have any improvement ideas, or would like to add new features, please feel free to do so. 
+
+## Credits
+This pipeline was developed as part of the final project for the Udacity Data Science for Disaster Response course. The data used in the pipeline was provided by Udacity.
