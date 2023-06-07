@@ -6,10 +6,10 @@ This repository contains a disaster response pipeline, which is used to classify
 
 The repository includes the following files and folders:
 
-*data: folder containing the data used to train and test the model.
-*models: Folder containing the trained models. 
-*app: Folder containing a web application to interact with the model and classify new messages.
-*README.md: This documentation file.
+* data: folder containing the data used to train and test the model.
+* models: Folder containing the trained models. 
+* app: Folder containing a web application to interact with the model and classify new messages.
+* README.md: This documentation file.
 ### Instructions:
 1. Run the following commands in the project's root directory to set up your database and model.
 
